@@ -30,7 +30,7 @@ function sendToDiscord(message) {
   var description = message.description;
 
   // If a Discord URL is not set, we do not want to continue and nofify the user that it needs to be set
-  if (!(conf.webhook_url_logs && conf.webhook_url_errors && webhook_url_events)) {
+  if (!(conf.webhook_url_logs && conf.webhook_url_errors && conf.webhook_url_events)) {
     return console.error("You must set discord webhook URLs");
   }
 
