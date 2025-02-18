@@ -1,5 +1,5 @@
 {
-  "name": "pm2-discord-webhook",
+  "name": "pm2-discord-webhook-lee",
   "version": "1.0.6",
   "description": "PM2 Discord Notifier, with events",
   "main": "app.js",
