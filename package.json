@@ -1,7 +1,7 @@
 {
   "name": "pm2-discord-webhook",
   "version": "1.0.6",
-  "description": "PM2 Discord Notifier",
+  "description": "PM2 Discord Notifier, with events",
   "main": "app.js",
   "dependencies": {
     "pm2": "^4.1.2",
@@ -11,11 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ben-sommer/pm2-discord-webhook.git"
+    "url": "https://github.com/ljmaslin/pm2-discord-webhook.git"
   },
   "config": {
     "webhook_url_logs": null,
     "webhook_url_errors": null,
+    "webhook_url_events": null,
     "process_name": null,
     "log": true,
     "error": false,
@@ -39,6 +40,6 @@
       "script": "app.js"
     }
   ],
-  "author": "Ben Sommer",
+  "author": "Lee Edwards",
   "license": "MIT"
 }

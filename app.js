@@ -30,7 +30,7 @@ function sendToDiscord(message) {
   var description = message.description;
 
   // If a Discord URL is not set, we do not want to continue and nofify the user that it needs to be set
-  if (!(conf.webhook_url_logs && conf.webhook_url_errors)) {
+  if (!(conf.webhook_url_logs && conf.webhook_url_errors && webhook_url_events)) {
     return console.error("You must set discord webhook URLs");
   }
 
@@ -44,7 +44,7 @@ function sendToDiscord(message) {
     method: 'post',
     body: payload,
     json: true,
-    url: message.event === "log" ? conf.webhook_url_logs : conf.webhook_url_errors
+    url: message.event === "log" ? conf.webhook_url_logs : message.event === "event" ? conf.webhook_url_events : conf.webhook_url_errors
   };
 
   // Finally, make the post request to the Discord Incoming Webhook
@@ -184,8 +184,8 @@ pm2.launchBus(function(err, bus) {
     // Listen for PM2 events
     bus.on('process:event', function(data) {
       if (!conf[data.event]) { return; }
-      var msg = 'The following event has occured on the PM2 process ' + data.process.name + ': ' + data.event;
-      createMessage(data, data.event, msg);
+      var msg = data.process.name + ':' + data.event;
+      createMessage(data, 'event', msg);
     });
 
     // Start the message processing
